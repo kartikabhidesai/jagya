@@ -1,2 +1,2 @@
-# jagya
-jagya project
+# knor
+
