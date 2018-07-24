@@ -6,7 +6,7 @@
                     <div class="ibox-title">
                         <h5>User List</h5>
                         <div class="ibox-tools">
-                            <a href="<?= admin_url(); ?>user/add" class="btn btn-primary">
+                            <a href="<?= admin_url(); ?>address/add" class="btn btn-primary">
                                 <i class="fa fa-plus"></i> Add New
                             </a>
                         </div>
@@ -34,10 +34,10 @@
                                         <td><?= $getComany[$i]->zipcode; ?></td>
                                         <td><?= $getComany[$i]->countryName; ?></td>
                                         <td class="tooltip-demo">
-                                            <a data-toggle="tooltip" title="Edit User Details" data-placement="top" href="<?= admin_url(); ?>user/edit/<?php echo $this->utility->encode($getComany[$i]->companyId);?>">
+                                            <a data-toggle="tooltip" title="Edit User Details" data-placement="top" href="<?= admin_url(); ?>address/edit/<?php echo $this->utility->encode($getComany[$i]->companyId);?>">
                                                 <i class="fa fa-edit text-navy"></i>
                                             </a>
-                                            <a data-toggle="tooltip" title="Delete" data-placement="top" data-toggle="modal" data-target="#myModal_autocomplete" data-href="<?= admin_url().'user/clientDelete'?>" data-id="<?php echo $getComany[$i]->companyId;?>" class="deletebutton">
+                                            <a data-toggle="tooltip" title="Delete" data-placement="top" data-toggle="modal" data-target="#myModal_autocomplete" data-href="<?= admin_url().'address/clientDelete'?>" data-id="<?php echo $getComany[$i]->companyId;?>" class="deletebutton">
                                                 <i class="fa fa-close text-navy"></i>
                                             </a>
                                         </td>

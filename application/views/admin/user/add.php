@@ -2,7 +2,7 @@
 <div class="wrapper wrapper-content white-bg m-t">
     <div class=" animated fadeInRightBig">
 
-        <form method="post" class="form-horizontal"  enctype="multipart/form-data"  action="<?= admin_url(); ?>user/add" id='clientAdd'>
+        <form method="post" class="form-horizontal"  enctype="multipart/form-data"  action="<?= admin_url(); ?>address/add" id='clientAdd'>
             
             <div class="form-group headingmain">						
                 <h2 class="title" style="margin:10px">User Detail</h2>								

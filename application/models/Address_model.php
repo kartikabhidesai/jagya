@@ -1,6 +1,6 @@
 <?php
 
-class User_model extends My_model {
+class Address_model extends My_model {
 
     public function __construct() {
         parent::__construct();
@@ -33,7 +33,7 @@ class User_model extends My_model {
             if ($result) {
                 $json_response['status'] = 'success';
                 $json_response['message'] = 'વપરાશકર્તા વિગતો સફળતાપૂર્વક ઉમેરાઈ';
-                $json_response['redirect'] = admin_url() . 'user';
+                $json_response['redirect'] = admin_url() . 'address';
             } else {
                 $json_response['status'] = 'error';
                 $json_response['message'] = 'કંઈક ખોટું થયું';
@@ -99,8 +99,8 @@ class User_model extends My_model {
         unset($data);
         if ($result) {
                 $json_response['status'] = 'success';
-                $json_response['message'] = 'User  edit successfully';
-                $json_response['redirect'] = admin_url() . 'user';
+                $json_response['message'] = 'address edit successfully';
+                $json_response['redirect'] = admin_url() . 'address';
             } else {
                 $json_response['status'] = 'error';
                 $json_response['message'] = 'કંઈક ખોટું થયું';
@@ -114,7 +114,7 @@ class User_model extends My_model {
         
         if($result){
             $json_response['status'] = 'success';
-            $json_response['message'] = 'User delete successfully';
+            $json_response['message'] = 'address delete successfully';
             $json_response['jscode'] = 'setTimeout(function(){location.reload();},1000)';
             
         }else{
