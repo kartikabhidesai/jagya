@@ -18,8 +18,8 @@ class My_model extends CI_Model
         $this->db->select($data ["select"]);
         $this->db->from($data ["table"]);
         
-        if (isset($data ["where"])) {
-            $this->db->where($data ["where"]);
+        if (isset($data["where"])) {
+            $this->db->where($data ["where"]['0'],$data ["where"]['1']);
         }
         
         if (isset($data ["where_or"])) {

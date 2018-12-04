@@ -6,9 +6,10 @@ class Address_model extends My_model {
         parent::__construct();
     }
 
-    function countryList() {
-        $data['select'] = ['id', 'sortname', 'name', 'phonecode'];
-        $data['table'] = TABLE_COUNTRIES;
+    function statelist() {
+        $data['select'] = ['id', 'name'];
+        $data['table'] = 'states';
+        
         $result = $this->selectRecords($data);
         return $result;
     }
@@ -122,6 +123,15 @@ class Address_model extends My_model {
             $json_response['message'] = 'Something went wrong';
         }
         return $json_response;
+    }
+    
+    public function citylist($postData){
+        
+        $data['select'] = ['id', 'name'];
+        $data['table'] = 'cities';
+        $data['where']=['state_id',$postData['state_id']];
+        $result = $this->selectRecords($data);
+        return $result;
     }
 
 

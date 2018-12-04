@@ -40,10 +40,8 @@
                 <label class="col-sm-3 control-label">Country</label>
                 <div class="col-sm-7">
                      <select class="form-control m-b" name="country_name">
-                        <option value="">- Select Country -</option>
-                        <?php for($i=0; $i<count($country); $i++) { ?>
-                            <option value="<?= $country[$i]->id;?>"><?= $country[$i]->name;?></option>
-                        <?php } ?>
+                        <option value="101">India</option>
+                        
                     </select>
                 </div>
             </div>
@@ -51,14 +49,24 @@
              <div class="form-group">
                 <label class="col-sm-3 control-label">State</label>
                 <div class="col-sm-7">
-                    <input type="text" name="state" placeholder="Enter state" class="form-control">
+                    
+                     <select class="form-control m-b choosestate" name="state">
+                         <option value="">Select State</option>
+                     <?php for($i=0; $i<count($state); $i++) { ?>
+                            <option value="<?= $state[$i]->id;?>"><?= $state[$i]->name;?></option>
+                            
+                        <?php } ?>
+                     </select>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-3 control-label">City</label>
                 <div class="col-sm-7">
-                    <input type="text" name="city" placeholder="Enter City" class="form-control">
+                    
+                     <select class="form-control m-b city changecity" name="city">
+                         <option value="">Select City</option>
+                     </select>
                 </div>
             </div>
         

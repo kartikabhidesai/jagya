@@ -34,7 +34,7 @@
                                         <td><?= $getComany[$i]->zipcode; ?></td>
                                         <td><?= $getComany[$i]->countryName; ?></td>
                                         <td class="tooltip-demo">
-                                            <a data-toggle="tooltip" title="Edit User Details" data-placement="top" href="<?= admin_url(); ?>address/edit/<?php echo $this->utility->encode($getComany[$i]->companyId);?>">
+                                            <a data-toggle="tooltip" title="Edit User Details" data-placement="top" href="<?= admin_url(); ?>address/edit/<?php echo $getComany[$i]->companyId;?>">
                                                 <i class="fa fa-edit text-navy"></i>
                                             </a>
                                             <a data-toggle="tooltip" title="Delete" data-placement="top" data-toggle="modal" data-target="#myModal_autocomplete" data-href="<?= admin_url().'address/clientDelete'?>" data-id="<?php echo $getComany[$i]->companyId;?>" class="deletebutton">

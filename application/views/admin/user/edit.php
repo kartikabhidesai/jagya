@@ -2,7 +2,7 @@
 <div class="wrapper wrapper-content white-bg m-t">
     <div class=" animated fadeInRightBig">
 
-        <form method="post" class="form-horizontal"  action="<?= admin_url(); ?>address/edit/<?php echo $this->utility->encode($companyDeatail[0]->id)?>" id='clientEdit'>
+        <form method="post" class="form-horizontal"  action="<?= admin_url(); ?>address/edit/<?php echo $companyDeatail[0]->id; ?>" id='clientEdit'>
             <div class="form-group headingmain">						
                 <h2 class="title" style="margin:10px">User Edit</h2>								
             </div>

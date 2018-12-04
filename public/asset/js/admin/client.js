@@ -5,24 +5,6 @@ var Client = function() {
         $('.dataTables-example').DataTable({
             pageLength: 25,
             responsive: true,
-            dom: '<"html5buttons"B>lTfgitp',
-            buttons: [
-                {extend: 'copy'},
-                {extend: 'csv'},
-                {extend: 'excel', title: 'ExampleFile'},
-                {extend: 'pdf', title: 'ExampleFile'},
-                {extend: 'print',
-                    customize: function(win) {
-                        $(win.document.body).addClass('white-bg');
-                        $(win.document.body).css('font-size', '10px');
-
-                        $(win.document.body).find('table')
-                                .addClass('compact')
-                                .css('font-size', 'inherit');
-                    }
-                }
-            ]
-
         });
         
         
@@ -98,6 +80,26 @@ var Client = function() {
         };
         handleFormValidate(form, rules, function(form) {
             handleAjaxFormSubmit(form);
+        });
+        
+        $('body').on('change','.choosestate',function(){
+           var state_id=$(this).val(); 
+           if (state_id != "")
+            {
+               data = {'state_id': state_id};
+                ajaxcall(baseurl + 'admin/Address/citylist', data, function(output) {
+                    var city=jQuery.parseJSON(output);
+                    //console.log(city[0].id);
+                        var markup='<option value="">Select City</option>';
+                        
+                        for(var i=0; i<city.length;i++){
+                            var mak='';
+                           mak='<option value="'+city[i].id+'">'+city[i].name+'</option>';
+                            markup=markup+mak;
+                        }
+                    $('.changecity').html(markup);
+                }); 
+            }
         });
     };
 

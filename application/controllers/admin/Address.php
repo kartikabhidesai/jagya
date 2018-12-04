@@ -29,6 +29,7 @@ class Address extends Admin_Controller {
             'Client.clientList()',
         );
         $data['getComany'] = $this->this_model->getDetail();
+        
         $this->load->view(ADMIN_LAYOUT, $data);
     }
 
@@ -51,7 +52,7 @@ class Address extends Admin_Controller {
             'Client.clientAdd()',
         );
 
-        $data['country'] = $this->this_model->countryList();
+        $data['state'] = $this->this_model->statelist();
         if ($this->input->post()) {
             $res = $this->this_model->addUserDetail($this->input->post());
             echo json_encode($res);
@@ -61,10 +62,10 @@ class Address extends Admin_Controller {
     }
 
     function edit($id) {
-        $companyId = $this->utility->decode($id);
-        if (!ctype_digit($companyId)) {
-            redirect(admin_url() . 'address');
-        }
+//        $companyId = $this->utility->decode($id);
+//        if (!ctype_digit($companyId)) {
+//            redirect(admin_url() . 'address');
+//        }
 
         $data['page'] = "admin/user/edit";
         $data['user'] = 'active';
@@ -84,11 +85,11 @@ class Address extends Admin_Controller {
         );
 
         $data['country'] = $this->this_model->countryList();
-        $data['companyDeatail'] = $this->this_model->companyDetail($companyId);
+        $data['companyDeatail'] = $this->this_model->companyDetail($id);
         // print_r($data['companyDeatail']);exit;
         if ($this->input->post()) {
             // print_r($this->input->post());exit;
-            $res = $this->this_model->editCompany($this->input->post(), $companyId);
+            $res = $this->this_model->editCompany($this->input->post(), $id);
             echo json_encode($res);
             exit();
         }
@@ -102,6 +103,15 @@ class Address extends Admin_Controller {
             echo json_encode($result);
             exit();
         }
+    }
+    
+    public function citylist(){
+         if ($this->input->post()) {
+            
+          $result = $this->this_model->citylist($this->input->post());
+          echo json_encode($result);
+          exit();
+         }
     }
 
 }
