@@ -83,7 +83,22 @@ class Address_model extends My_model {
         $result = $this->selectFromJoin($data);
         return $result;
     }
-
+    
+    function citylistedit($stateid){
+        $data['select'] = ['id', 'name'];
+        $data['table'] = 'cities';
+        $data['where']=['state_id',$stateid];
+        $result = $this->selectRecords($data);
+        
+        return $result;
+    }
+            function countryList(){
+        $data['select'] = ['id', 'name'];
+        $data['table'] = 'countries';
+        
+        $result = $this->selectRecords($data);
+        return $result; 
+    }
     function editCompany($postData, $companyId) {
         $data['update']['name'] = $postData['names'];
         $data['update']['email'] = $postData['email'];
@@ -133,7 +148,78 @@ class Address_model extends My_model {
         $result = $this->selectRecords($data);
         return $result;
     }
-
+    
+    public function getcity(){        
+        $data['select'] = ['id', 'name'];
+        $data['table'] = 'cities';
+        $result = $this->selectRecords($data);        
+        return $result;
+    }
+    
+    public function getstate(){        
+        $data['select'] = ['id', 'name'];
+        $data['table'] = 'states';
+        $result = $this->selectRecords($data);        
+        return $result;
+    }
+    
+    public function fillter($postData){
+       
+        $data['select'] = ['c.name as userName', 
+        'c.email', 
+        'c.address1', 
+        'c.address2', 
+        'c.zipcode',
+        'c.state',
+        'c.city',
+        'c.id as companyId', 'ct.name as countryName'];
+        $data['join'] = [
+            TABLE_COUNTRIES . ' as ct' => [
+                'c.country_name = ct.id',
+                'LEFT',
+            ],
+        ];
+        if($postData['state'] !="" && $postData['city'] !=""){
+            $data['where'] = ['c.state'=>$postData['state'],'c.city'=>$postData['city']];
+        }
+        if($postData['state'] == "" && $postData['city'] !=""){
+            $data['where'] = ['c.city'=>$postData['city']];
+        }
+        
+        if($postData['state'] !="" && $postData['city'] == ""){
+            $data['where'] = ['c.state'=>$postData['state']];
+        }
+        
+        $data['table'] =  'user_detail c';
+        $result = $this->selectFromJoin($data);
+         
+        return $result;
+    }
+            
+    public function getpdfdetails($postData){
+        
+        $details=array();
+        for($i=0;$i < count($postData); $i++){
+            $data=[];
+             $data['select'] = ['c.name as userName', 
+                'c.email', 
+                'c.address1', 
+                'c.address2', 
+                'c.zipcode', 
+                'c.id as companyId', 'ct.name as countryName'];
+                $data['join'] = [
+                    TABLE_COUNTRIES . ' as ct' => [
+                        'c.country_name = ct.id',
+                        'LEFT',
+                    ],
+                ];
+                $data['table'] =  'user_detail c';
+                $data['where']=['c.id'=>$postData[$i]];
+                $result = $this->selectFromJoin($data);
+                array_push($details,$result['0']);
+        }
+        return $details;
+    }
 
 }
 

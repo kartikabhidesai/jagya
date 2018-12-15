@@ -2,12 +2,13 @@
     <div class=" animated fadeInRightBig">
         <div class="row">
             <div class="col-lg-12">
+                
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>User List</h5>
+                        
                         <div class="ibox-tools">
-                            <a href="<?= admin_url(); ?>address/add" class="btn btn-primary">
-                                <i class="fa fa-plus"></i> Add New
+                            <a href="<?= admin_url(); ?>city/addcity" class="btn btn-primary">
+                                <i class="fa fa-plus"></i> Add New City
                             </a>
                         </div>
                     </div>
@@ -17,27 +18,25 @@
                             <table class="table table-striped table-bordered table-hover dataTables-example" >
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Address</th>
-                                        <th>Zipcode</th>
-                                        <th>Country</th>
+                                        <th>No</th>
+                                        <th>City Name</th>
+                                        <th>State Name</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php for($i=0; $i<count($getComany); $i++) { ?>
+                                    <?php for($i=0; $i<count($getcity); $i++) { ?>
                                     <tr>
-                                        <td><?= $getComany[$i]->userName; ?></td>
-                                        <td><?= $getComany[$i]->email; ?></td>
-                                        <td><?= $getComany[$i]->address1; ?></td>
-                                        <td><?= $getComany[$i]->zipcode; ?></td>
-                                        <td><?= $getComany[$i]->countryName; ?></td>
+                                        <td><?= $i+1; ?></td>
+                                        <td><?= $getcity[$i]->name; ?></td>
+                                        <td><?= $getcity[$i]->st_name; ?></td>
+                                       
                                         <td class="tooltip-demo">
-                                            <a data-toggle="tooltip" title="Edit User Details" data-placement="top" href="<?= admin_url(); ?>address/edit/<?php echo $getComany[$i]->companyId;?>">
+                                            <a data-toggle="tooltip" title="Edit User Details" data-placement="top" href="<?= admin_url(); ?>city/editcity/<?php echo $getcity[$i]->id;?>">
                                                 <i class="fa fa-edit text-navy"></i>
                                             </a>
-                                            <a data-toggle="tooltip" title="Delete" data-placement="top" data-toggle="modal" data-target="#myModal_autocomplete" data-href="<?= admin_url().'address/clientDelete'?>" data-id="<?php echo $getComany[$i]->companyId;?>" class="deletebutton">
+                                            
+                                            <a data-toggle="tooltip" title="Delete" data-placement="top" data-toggle="modal" data-target="#myModal_autocomplete" data-href="<?= admin_url().'city/citydelete'?>" data-id="<?php echo $getcity[$i]->id;?>" class="deletebutton">
                                                 <i class="fa fa-close text-navy"></i>
                                             </a>
                                         </td>
@@ -47,6 +46,7 @@
                            </table>
                         </div>
                     </div>
+                    
                     <div class="modal inmodal" id="myModal_autocomplete" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content animated bounceInRight">
@@ -65,6 +65,8 @@
                             </div>
                         </div>
                     </div>
+                    
+                    
                 </div>
             </div>
         </div>

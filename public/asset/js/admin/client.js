@@ -1,11 +1,39 @@
 var Client = function() {
 
     var clientList = function() {
-
+        $('body').on('change','.sorting',function(){
+            var state = $('#statefillter').val();
+            var city = $('#cityfillter').val();
+            var url = baseurl + 'admin/address?state='+state+"&city="+city;
+            location.href = url;
+        });
         $('.dataTables-example').DataTable({
-            pageLength: 25,
             responsive: true,
         });
+        $('body').on('click','.createpdf',function(){
+            var userid = [];
+            var oTable = $('.dataTables-example').dataTable();
+            var rowcollection =  oTable.$(".selectuser:checked", {"page": "all"});
+            rowcollection.each(function(){
+                if($(this).is(":checked")){
+                    userid.push($(this).val());
+                }
+            });
+            if(userid.length !=0){
+                data = {'userid': userid};
+                ajaxcall(baseurl + 'admin/address/createpdf', data, function(output) {
+                    window.open(baseurl + 'admin/address/getpdf');
+                   
+                });   
+            }else{
+                alert("Please Select user");
+            }
+             
+           
+            //console.log(favorite);
+        });
+        
+        
         
         
          $('body').on('click', '.interestedlist', function() {
@@ -104,6 +132,26 @@ var Client = function() {
     };
 
     var clientEdit = function() {
+        
+        $('body').on('change','.choosestate',function(){
+           var state_id=$(this).val(); 
+           if (state_id != "")
+            {
+               data = {'state_id': state_id};
+                ajaxcall(baseurl + 'admin/Address/citylist', data, function(output) {
+                    var city=jQuery.parseJSON(output);
+                    //console.log(city[0].id);
+                        var markup='<option value="">Select City</option>';
+                        
+                        for(var i=0; i<city.length;i++){
+                            var mak='';
+                           mak='<option value="'+city[i].id+'">'+city[i].name+'</option>';
+                            markup=markup+mak;
+                        }
+                    $('.changecity').html(markup);
+                }); 
+            }
+        });
        
         var form = $('#clientEdit');
         var rules = {

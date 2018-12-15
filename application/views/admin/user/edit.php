@@ -40,30 +40,37 @@
                 <label class="col-sm-3 control-label">Country</label>
                 <div class="col-sm-7">
                      <select class="form-control m-b" name="country_name">
-                        <option value="">- Select Country -</option>
-                          <?php for($i=0; $i<count($country); $i++) { ?>
-                            <option value="<?= $country[$i]->id;?>"
-                                    <?php
-                                    if($country[$i]->id == $companyDeatail[0]->country_name){
-                                        echo "selected = 'selected'";
-                                    } ?>
-                                    ><?= $country[$i]->name;?></option>
-                        <?php } ?>
+                        <option value="101">India</option>
+                          
                     </select>
                 </div>
             </div>
 
-             <div class="form-group">
+            <div class="form-group">
                 <label class="col-sm-3 control-label">State</label>
                 <div class="col-sm-7">
-                    <input type="text" name="state" placeholder="Enter state"  value='<?php echo  $companyDeatail[0]->state; ?>' class="form-control">
+                    
+                     <select class="form-control m-b choosestate" name="state">
+                         <option value="">Select State</option>
+                     <?php for($i=0; $i<count($state); $i++) { ?>
+                            <option value="<?= $state[$i]->id;?>" <?php if($companyDeatail[0]->state == $state[$i]->id ){echo 'selected="seleceted"';}?>><?= $state[$i]->name;?></option>
+                            
+                        <?php } ?>
+                     </select>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-3 control-label">City</label>
                 <div class="col-sm-7">
-                    <input type="text" name="city" placeholder="Enter City"  value='<?php echo  $companyDeatail[0]->city; ?>' class="form-control">
+                    
+                     <select class="form-control m-b city changecity" name="city">
+                         <option value="">Select City</option>
+                     <?php for($i=0; $i<count($citylist); $i++) { ?>
+                            <option value="<?= $citylist[$i]->id;?>" <?php if($companyDeatail[0]->city == $citylist[$i]->id ){echo 'selected="seleceted"';}?>><?= $citylist[$i]->name;?></option>
+                            
+                        <?php } ?>
+                     </select>
                 </div>
             </div>
         
